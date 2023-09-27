@@ -24,9 +24,6 @@ if TOKEN is None:
     exit(1)
 
 # Define as intenções necessárias para o seu bot
-intents = discord.Intents.default()
-intents.typing = False  # Puedes personalizarlos según tus necesidades
-
 # Cria uma instância do bot com as intenções
 # Configurar el bot
 intents = discord.Intents.all()
@@ -39,8 +36,15 @@ bot = commands.Bot(command_prefix="+", intents=intents)  # Cambia el prefijo a t
 async def on_ready():
     """
     Este evento se llama cuando el bot se ha conectado y está listo para funcionar.
-    Imprime el nombre del bot en la consola.
+    Configura el estado personalizado del bot para mostrar "🔱 Administrando servidores!"
+    como actividad.
     """
+    activity = discord.Activity(
+        type=discord.ActivityType.custom,  # Tipo de actividad,
+        #puedescambiarlo según tus preferencias
+        name="🔱 Administrando servidores!"  # Texto de la actividad
+    )
+    await bot.change_presence(activity=activity)
     print(f"Bot conectado como {bot.user.name}")
 
 # Importe e carregue seus comandos e funcionalidades de outros arquivos
